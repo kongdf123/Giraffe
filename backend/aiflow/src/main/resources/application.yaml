@@ -2,14 +2,12 @@ server:
   port: 8080
 
 spring:
-  application:
-    name: aiflow
   datasource:
     url: jdbc:postgresql://localhost:5432/aiflow
     username: postgres
     password: postgres
 
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
