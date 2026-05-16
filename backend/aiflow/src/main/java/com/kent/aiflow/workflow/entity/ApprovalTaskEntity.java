@@ -23,5 +23,8 @@ public class ApprovalTaskEntity {
 
     private String comment;
 
+    private String actionBy;
+    private LocalDateTime actionTime;
+
     private LocalDateTime createdAt;
 }

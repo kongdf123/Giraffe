@@ -21,6 +21,10 @@ import java.util.List;
 public class WorkflowRequestController {
 
     private final WorkflowRequestService workflowRequestService;
+    @PostMapping("/{id}/submit")
+    public void submit(@PathVariable Long id) {
+        workflowRequestService.submit(id);
+    }
 
     @PostMapping
     public WorkflowRequestEntity create(@RequestBody CreateWorkflowRequestDto dto) {

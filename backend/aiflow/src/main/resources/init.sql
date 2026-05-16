@@ -45,3 +45,9 @@ VALUES ('PURCHASE', 'Purchase Request', 'Purchase approval workflow');
 
 INSERT INTO workflow_template (code, name, description)
 VALUES ('LEAVE', 'Leave Request', 'Leave workflow');
+
+ALTER TABLE approval_task
+    ADD COLUMN action_time TIMESTAMP NULL;
+
+ALTER TABLE approval_task
+    ADD COLUMN action_by VARCHAR(50) NULL;
