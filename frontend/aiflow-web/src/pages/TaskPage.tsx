@@ -107,7 +107,7 @@ export default function TaskPage() {
   );
 
   return (
-    <Container sx={{ mt: 3 }}>
+    <Container maxWidth={false} sx={{ mt: 3 }}>
       <Stack spacing={2}>
         <Typography component="h1" variant="h5">
           Pending Tasks
