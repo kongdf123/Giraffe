@@ -1,42 +1,52 @@
-\# Java AI Workflow Agent
+# Java AI Workflow Agent
 
-
-
-\## Overview
-
-
+## Overview
 
 Enterprise AI workflow assistant demo.
 
 
+### Dashboard
 
-\## Tech Stack
+![Dashboard screen](docs/screenshots/Dashboard.png)
 
+### Workflows
 
+![Workflow screen](docs/screenshots/Workflows.png)
 
-\- Spring Boot
+### Pending Tasks
 
-\- React
+![Pending Tasks screen](docs/screenshots/PendingTasks.png)
 
-\- PostgreSQL
+### AI Agent
 
-\- Python
-
-\- LangGraph
-
-\- Qwen
-
+![AI Agent screen](docs/screenshots/AIAgent.png)
 
 
-\## Progress
+## Tech Stack
+
+- Spring Boot
+
+- React
+
+- PostgreSQL
+
+- Python
+
+- LangGraph
+
+- Qwen
 
 
 
-\- \[x] Day 1 project scaffold
+## Progress
 
-\- \[ ] Day 2 workflow module
 
-\- \[ ] Day 3 authentication
 
-\- \[ ] Day 4 AI integration
+- [x] Day 1 project scaffold
+
+- [ ] Day 2 workflow module
+
+- [ ] Day 3 authentication
+
+- [ ] Day 4 AI integration
 
