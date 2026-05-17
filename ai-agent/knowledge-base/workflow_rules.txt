@@ -1,0 +1,5 @@
+Urgent approval requests must be handled within 4 hours.
+
+Purchase workflows above 50000 RMB require director approval.
+
+Production schedule changes must be confirmed by manufacturing manager.

@@ -4,3 +4,8 @@ requests
 python-dotenv
 langgraph
 langchain-openai
+
+qdrant-client
+sentence-transformers
+pypdf
+python-docx

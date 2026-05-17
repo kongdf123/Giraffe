@@ -8,15 +8,19 @@ import {
   Container,
   Stack,
   TextField,
-  Typography,
+  Typography, Tabs,
+  Tab
 } from "@mui/material";
 import { sendAgentMessage } from "../api/agentApi";
+import { sendRagMessage } from "../api/ragApi";
 
 export default function AgentPage() {
   const [message, setMessage] = useState("");
   const [answer, setAnswer] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const [mode, setMode] = useState(0);
 
   const handleSend = useCallback(async () => {
     const trimmedMessage = message.trim();
@@ -29,7 +33,11 @@ export default function AgentPage() {
     setError(null);
 
     try {
-      const res = await sendAgentMessage(trimmedMessage);
+      //const res = await sendAgentMessage(trimmedMessage);
+      const res =
+        mode === 0
+          ? await sendAgentMessage(trimmedMessage)
+          : await sendRagMessage(trimmedMessage);
       setAnswer(res.data.answer ?? "");
       setMessage("");
     } catch {
@@ -37,7 +45,7 @@ export default function AgentPage() {
     } finally {
       setLoading(false);
     }
-  }, [loading, message]);
+  }, [loading, message, mode]);
 
   return (
     <Container maxWidth={false} sx={{ mt: 3 }}>
@@ -49,6 +57,10 @@ export default function AgentPage() {
         <Card variant="outlined">
           <CardContent>
             <Stack spacing={2}>
+              <Tabs value={mode} onChange={(_, v) => setMode(v)}>
+                <Tab label="Workflow AI" />
+                <Tab label="Knowledge AI" />
+              </Tabs>
               <TextField
                 fullWidth
                 multiline
