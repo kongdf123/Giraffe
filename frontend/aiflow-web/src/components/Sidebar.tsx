@@ -23,6 +23,7 @@ const menuItems = [
   { label: "Workflows", path: "/workflows", icon: <RouteIcon /> },
   { label: "Pending Tasks", path: "/tasks", icon: <PlaylistAddCheckIcon /> },
   { label: "AI Copilot", path: "/agent", icon: <SmartToyIcon /> },
+  { label: "Document Center", path: "/documents", icon: <PlaylistAddCheckIcon /> },
 ];
 
 type SidebarProps = {

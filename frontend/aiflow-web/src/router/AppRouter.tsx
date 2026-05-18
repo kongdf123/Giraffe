@@ -4,6 +4,7 @@ import AgentPage from "../pages/AgentPage";
 import DashboardPage from "../pages/DashboardPage";
 import TaskPage from "../pages/TaskPage";
 import WorkflowPage from "../pages/WorkflowPage";
+import DocumentCenterPage from "../pages/DocumentCenterPage";
 
 export default function AppRouter() {
   return (
@@ -14,6 +15,7 @@ export default function AppRouter() {
           <Route path="workflows" element={<WorkflowPage />} />
           <Route path="tasks" element={<TaskPage />} />
           <Route path="agent" element={<AgentPage />} />
+          <Route path="documents" element={<DocumentCenterPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>

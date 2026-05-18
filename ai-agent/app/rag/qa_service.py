@@ -11,11 +11,16 @@ llm = ChatOpenAI(
 def rag_answer(question: str):
     docs = search_documents(question)
 
-    context = "\n".join(docs)
+    context = "\n\n".join(
+        [f"[Source: {d['source']}]\n{d['content']}" for d in docs]
+    )
 
     prompt = f"""
-Answer based only on the following company documents:
+Answer only based on the provided company documents.
 
+Include source file names in final answer.
+
+Documents:
 {context}
 
 Question:
@@ -23,4 +28,8 @@ Question:
 """
 
     result = llm.invoke(prompt)
-    return result.content
+
+    return {
+        "answer": result.content,
+        "sources": list(set([d["source"] for d in docs]))
+    }

@@ -11,12 +11,13 @@ import {
   Typography, Tabs,
   Tab
 } from "@mui/material";
-import { sendAgentMessage } from "../api/agentApi";
+import { sendActionMessage, sendAgentMessage } from "../api/agentApi";
 import { sendRagMessage } from "../api/ragApi";
 
 export default function AgentPage() {
   const [message, setMessage] = useState("");
   const [answer, setAnswer] = useState("");
+  const [sources, setSources] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -34,11 +35,21 @@ export default function AgentPage() {
 
     try {
       //const res = await sendAgentMessage(trimmedMessage);
-      const res =
-        mode === 0
-          ? await sendAgentMessage(trimmedMessage)
-          : await sendRagMessage(trimmedMessage);
+      // const res =
+      //   mode === 0
+      //     ? await sendAgentMessage(trimmedMessage)
+      //     : await sendRagMessage(trimmedMessage);
+      let res;
+
+      if (mode === 0) {
+        res = await sendAgentMessage(trimmedMessage);
+      } else if (mode === 1) {
+        res = await sendRagMessage(trimmedMessage);
+      } else {
+        res = await sendActionMessage(trimmedMessage);
+      }
       setAnswer(res.data.answer ?? "");
+      setSources(res.data.sources ?? []);
       setMessage("");
     } catch {
       setError("Unable to reach the copilot. Please try again.");
@@ -60,6 +71,7 @@ export default function AgentPage() {
               <Tabs value={mode} onChange={(_, v) => setMode(v)}>
                 <Tab label="Workflow AI" />
                 <Tab label="Knowledge AI" />
+                <Tab label="Action AI" />
               </Tabs>
               <TextField
                 fullWidth
@@ -97,6 +109,17 @@ export default function AgentPage() {
                 >
                   {answer || "Responses will appear here after you send a message."}
                 </Typography>
+                <Box>
+                  <Typography component="h2" variant="subtitle1" gutterBottom>
+                    Sources
+                  </Typography>
+                  <Typography
+                    color={sources.length ? "text.primary" : "text.secondary"}
+                    sx={{ whiteSpace: "pre-wrap" }}
+                  >
+                    {sources.map((source) => source).join("\n") || "Sources will appear here after you send a message."}
+                  </Typography>
+                </Box>
               </Box>
             </Stack>
           </CardContent>
